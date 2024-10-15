@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8e8f2;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px; /* Adiciona um espaço em volta */
+            box-sizing: border-box; /* Faz o padding não aumentar a largura total */
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px; /* Largura máxima para telas grandes */
+            text-align: left;
+        }
+        h1 {
+            text-align: center;
+            color: #d680a1;
+            font-size: 1.5em; /* Tamanho da fonte ajustado */
+            margin-bottom: 15px; /* Margem inferior */
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px; /* Espaçamento entre perguntas */
+        }
+        .question {
+            margin-bottom: 10px; /* Margem entre perguntas */
+        }
+        .question label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .options label {
+            margin-left: 10px;
+        }
+        #errorMsg {
+            color: red;
+            text-align: center;
+        }
+        button {
+            padding: 10px;
+            background-color: #d680a1;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s; /* Efeito de transição suave */
+        }
+        button:hover {
+            background-color: #c05d84;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Este site está público, então qualquer pessoa com o link ou QR Code pode acessá-lo. Mas como fiz isso especialmente para minha neném, responda as perguntas abaixo para continuar. 😊💕</h1>
+        <form id="quizForm">
+            <!-- Primeira Pergunta -->
+            <div class="question">
+                <label for="q1">Quando a gente deu nosso primeiro selinho?</label>
+                <div class="options">
+                    <input type="radio" id="q1a" name="q1" value="outra" required>
+                    <label for="q1a">17 de agosto</label>
+                    <input type="radio" id="q1b" name="q1" value="resposta1">
+                    <label for="q1b">18 de agosto</label>
+                    <input type="radio" id="q1c" name="q1" value="outra">
+                    <label for="q1c">19 de agosto</label>
+                </div>
+            </div>
+
+            <!-- Segunda Pergunta -->
+            <div class="question">
+                <label for="q2">Qual nome do nosso garoto?</label>
+                <div class="options">
+                    <input type="radio" id="q2a" name="q2" value="resposta2" required>
+                    <label for="q2a">Bumblebee</label>
+                    <input type="radio" id="q2b" name="q2" value="outra">
+                    <label for="q2b">Peter Parker</label>
+                    <input type="radio" id="q2c" name="q2" value="outra">
+                    <label for="q2c">Maverick</label>
+                </div>
+            </div>
+
+            <!-- Terceira Pergunta -->
+            <div class="question">
+                <label for="q3">Qual nome da nossa menina?</label>
+                <div class="options">
+                    <input type="radio" id="q3a" name="q3" value="outra" required>
+                    <label for="q3a">Jane</label>
+                    <input type="radio" id="q3b" name="q3" value="outra">
+                    <label for="q3b">Mary</label>
+                    <input type="radio" id="q3c" name="q3" value="resposta3">
+                    <label for="q3c">Mary Jane</label>
+                </div>
+            </div>
+
+            <button type="submit">Enviar</button>
+        </form>
+        <p id="errorMsg" style="display: none;">Respostas incorretas. Tente novamente.</p>
+    </div>
+    <script>
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const answers = {
+                q1: 'resposta1',
+                q2: 'resposta2',
+                q3: 'resposta3'
+            };
+            const userAnswers = {
+                q1: document.querySelector('input[name="q1"]:checked').value,
+                q2: document.querySelector('input[name="q2"]:checked').value,
+                q3: document.querySelector('input[name="q3"]:checked').value
+            };
+            if (JSON.stringify(answers) === JSON.stringify(userAnswers)) {
+                window.location.href = 'parabens.html';
+            } else {
+                document.getElementById('errorMsg').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
